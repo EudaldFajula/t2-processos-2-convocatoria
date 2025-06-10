@@ -30,26 +30,40 @@ namespace Exercici5
 
         public bool ChargeDevice(int requiredAmount)
         {
-            lock (lockObj)
+            // Garanteix exclusió mútua per evitar condicions de carrera
+            lock (lockObj) 
             {
+                // Si la bateria ja està esgotada, retorna fals
                 if (finished) { return false; }
 
-                if (currentCapacity >= requiredAmount)
+                // Comprova si hi ha suficient capacitat per carregar el dispositiu
+                if (currentCapacity >= requiredAmount) 
                 {
-                    currentCapacity -= requiredAmount;
-                    TotalCharges++;
-                    if (currentCapacity == 0)
+                    // Redueix la capacitat de la bateria
+                    currentCapacity -= requiredAmount; 
+
+                    // Augmenta el comptador de càrregues completes
+                    TotalCharges++; 
+
+                    // Si la bateria s'ha esgotat, marca com a finalitzada
+                    if (currentCapacity == 0) 
                     {
                         finished = true;
-                        stopwatch.Stop();
+                        // Atura el cronòmetre de temps d'ús
+                        stopwatch.Stop(); 
                     }
-                    return true;
+                    // Indica que la càrrega ha estat satisfactòria
+                    return true; 
                 }
-                else
+                // Si no hi ha suficient energia per carregar el dispositiu
+                else 
                 {
-                    finished = true;
+                    // Marca la bateria com esgotada
+                    finished = true; 
+                    // Atura el cronòmetre
                     stopwatch.Stop();
-                    return false;
+                    // Retorna fals indicant que la càrrega ha fallat
+                    return false; 
                 }
             }
         }

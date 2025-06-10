@@ -22,29 +22,34 @@ namespace Exercici5
         }
         public void StartCharging()
         {
+            // Continua mentre la bateria no s'hagi esgotat
             while (!battery.IsFinished())
             {
+                // Intenta carregar el dispositiu completament
                 bool charged = battery.ChargeDevice(totalCapacity);
                 if (!charged)
                 {
                     Console.WriteLine($"[{name}] No es pot carregar completament. Aturant.");
-                    break;
+                    break; // Si no es pot carregar, es finalitza el procés
                 }
 
                 Console.WriteLine($"[{name}] Carregat completament.");
 
+                // Inicialitza la càrrega restant del dispositiu
                 int remainingCharge = totalCapacity;
                 while (remainingCharge > 0 && !battery.IsFinished())
                 {
-                    Thread.Sleep(1000);
-                    remainingCharge -= consumptionPerSecond;
-                    if (remainingCharge < 0) remainingCharge = 0;
+                    Thread.Sleep(1000); // Espera 1 segon per simular el consum
+                    remainingCharge -= consumptionPerSecond; // Redueix la càrrega segons el consum per segon
+
+                    if (remainingCharge < 0) remainingCharge = 0; // Evita que la càrrega sigui negativa
 
                     Console.WriteLine($"[{name}] Consum actual: {remainingCharge} mAh restants.");
                 }
             }
 
-            Console.WriteLine($"[{name}] Fil finalitzat.");
+            Console.WriteLine($"[{name}] Fil finalitzat."); // Indica que el fil ha acabat
         }
+
     }
 }
