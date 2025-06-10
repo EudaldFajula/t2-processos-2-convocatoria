@@ -36,10 +36,10 @@ namespace Exercici4
                     }
                 }
                 writer.WriteLine("\n===============================");
-                writer.WriteLine($"Total processes: {totalProcesses}");
-                writer.WriteLine($"Total threads: {totalThreads}");
+                writer.WriteLine($"Total de processos: {totalProcesses}");
+                writer.WriteLine($"Total de fils: {totalThreads}");
             }
-            Console.WriteLine($"Information saved to: {Path.GetFullPath(filePath)}");
+            Console.WriteLine($"Informació desada a: {Path.GetFullPath(filePath)}");
         }
     }
 }

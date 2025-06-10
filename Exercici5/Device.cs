@@ -20,7 +20,6 @@ namespace Exercici5
             this.consumptionPerSecond = consumptionPerSecond;
             this.battery = battery;
         }
-
         public void StartCharging()
         {
             while (!battery.IsFinished())
@@ -28,11 +27,11 @@ namespace Exercici5
                 bool charged = battery.ChargeDevice(totalCapacity);
                 if (!charged)
                 {
-                    Console.WriteLine($"[{name}] Cannot be fully charged. Stopping.");
+                    Console.WriteLine($"[{name}] No es pot carregar completament. Aturant.");
                     break;
                 }
 
-                Console.WriteLine($"[{name}] Fully charged.");
+                Console.WriteLine($"[{name}] Carregat completament.");
 
                 int remainingCharge = totalCapacity;
                 while (remainingCharge > 0 && !battery.IsFinished())
@@ -41,11 +40,11 @@ namespace Exercici5
                     remainingCharge -= consumptionPerSecond;
                     if (remainingCharge < 0) remainingCharge = 0;
 
-                    Console.WriteLine($"[{name}] Current consumption: {remainingCharge} mAh remaining.");
+                    Console.WriteLine($"[{name}] Consum actual: {remainingCharge} mAh restants.");
                 }
             }
 
-            Console.WriteLine($"[{name}] Thread ending.");
+            Console.WriteLine($"[{name}] Fil finalitzat.");
         }
     }
 }

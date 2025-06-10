@@ -4,16 +4,16 @@
     {
         public static void Main()
         {
-            Console.Write("Enter the battery capacity in mAh: ");
+            Console.Write("Introdueix la capacitat de la bateria en mAh: ");
             int batteryCapacity = ReadPositiveInt();
 
-            Console.Write("Enter the number of devices to charge: ");
+            Console.Write("Introdueix el nombre de dispositius a carregar: ");
             int deviceCount = ReadPositiveInt();
 
-            Console.Write("Enter total capacity needed for each device (mAh): ");
+            Console.Write("Introdueix la capacitat total necessària per a cada dispositiu (mAh): ");
             int totalCapacity = ReadPositiveInt();
 
-            Console.Write("Enter consumption per second for each device (mAh/s): ");
+            Console.Write("Introdueix el consum per segon de cada dispositiu (mAh/s): ");
             int consumptionPerSecond = ReadPositiveInt();
 
             AuxiliaryBattery battery = new AuxiliaryBattery(batteryCapacity);
@@ -22,7 +22,7 @@
 
             for (int i = 0; i < deviceCount; i++)
             {
-                string name = $"Device {i + 1}";
+                string name = $"Dispositiu {i + 1}";
                 devices.Add(new Device(name, totalCapacity, consumptionPerSecond, battery));
             }
 
@@ -39,9 +39,9 @@
                 thread.Join();
             }
 
-            Console.WriteLine("Simulation ended.");
-            Console.WriteLine($"Total time: {battery.TotalTimeSeconds} seconds");
-            Console.WriteLine($"Total number of charges completed: {battery.TotalCharges}");
+            Console.WriteLine("Simulació finalitzada.");
+            Console.WriteLine($"Temps total: {battery.TotalTimeSeconds} segons");
+            Console.WriteLine($"Nombre total de càrregues completades: {battery.TotalCharges}");
         }
 
         private static int ReadPositiveInt()
@@ -51,9 +51,10 @@
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out int result) && result > 0)
                     return result;
-                Console.Write("Invalid input. Please enter a positive integer: ");
+                Console.Write("Entrada no vàlida. Introdueix un número enter positiu: ");
             }
         }
+
     }
 
 }
